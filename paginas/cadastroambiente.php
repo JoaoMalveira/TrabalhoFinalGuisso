@@ -8,7 +8,7 @@
 <body>
 	<header>
 		<?php
-	require 'class/rb.php'; // Inclui a biblioteca RedBeanPHP
+	require '../class/rb.php'; // Inclui a biblioteca RedBeanPHP
 	?>
 	</header>
 	<main>
