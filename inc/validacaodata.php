@@ -2,7 +2,7 @@
 
 
  if (!isset($_POST['data'])){
-    header('Location: ../reserva/calendario.php');
+    header('Location: ../paginas/calendario.php');
     exit;
  }
 

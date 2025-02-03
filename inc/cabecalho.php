@@ -8,7 +8,7 @@ if (session_status() == PHP_SESSION_NONE) {
 $paginaAtual = basename($_SERVER['PHP_SELF']);
 
 if ($paginaAtual !== 'index.php') {
-    echo '<a href="../class/home.php">Home</a>';
+    echo '<a href="../paginas/home.php">Home</a>';
     
 
 }

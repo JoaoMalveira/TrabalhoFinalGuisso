@@ -10,7 +10,7 @@
 
 <body>
 	<header>
-		<?php include_once "./inc/cabecalho.php"; ?>
+		<?php include_once "../inc/cabecalho.php"; ?>
 	</header>
 
 	<body>
@@ -27,7 +27,7 @@
 		</form>
 	</body>
 	<footer>
-		<?php include_once "./inc/rodape.php"; ?>
+		<?php include_once "../inc/rodape.php"; ?>
 	</footer>
 
 </body>
