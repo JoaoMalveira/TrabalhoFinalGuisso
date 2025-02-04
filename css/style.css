@@ -1,0 +1,168 @@
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial, sans-serif;
+}
+
+body {
+	background-color: #f4f4f4;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.container-1 {
+	background: #ffffff;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+	width: 500px; /* Aumentei de 300px para 500px */
+	text-align: center;
+}
+
+h2 {
+	margin-bottom: 20px;
+	color: #333;
+}
+
+label {
+	display: block;
+	text-align: left;
+	font-size: 14px;
+	margin-bottom: 5px;
+	color: #555;
+}
+
+.input-1, .textarea-1 {
+	width: 100%; /* Mantém alinhado ao novo tamanho do form */
+	padding: 10px; /* Aumentei o padding para melhor usabilidade */
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-size: 16px; /* Aumentei o tamanho da fonte */
+}
+
+.textarea1 {
+	height: 100px; /* Ajustei para mais espaço na descrição */
+	resize: none;
+}
+
+.button-1 {
+	width: 100%;
+	padding: 12px;
+	background-color: #555;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-size: 18px; /* Botão um pouco maior */
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+button:hover {
+	background-color: #333;
+}
+
+.container {
+	background: #ffffff;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+	width: 300px;
+	text-align: center;
+}
+
+label {
+	display: block;
+	text-align: left;
+	font-size: 14px;
+	margin-bottom: 5px;
+	color: #555;
+}
+
+input, textarea {
+	width: 100%;
+	padding: 8px;
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-size: 14px;
+}
+
+textarea {
+	height: 80px;
+	resize: none;
+}
+
+button {
+	width: 100%;
+	padding: 10px;
+	background-color: #555;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-size: 16px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+header {
+	background-color: #333;  /* Cor de fundo escura */
+	color: white;            /* Texto branco */
+	padding: 20px 0;         /* Espaçamento interno */
+	text-align: center;      /* Alinhamento central */
+	position: fixed;         /* Fixa o cabeçalho no topo */
+	width: 100%;             /* O cabeçalho ocupa toda a largura da tela */
+	top: 0;                  /* Fixa no topo */
+	left: 0;                 /* Fixa na borda esquerda */
+	z-index: 1000;           /* Coloca o cabeçalho sobre outros elementos */
+}
+
+header h1 {
+	font-size: 24px;         /* Tamanho da fonte */
+	margin: 0;               /* Remove margem */
+}
+
+header nav {
+	margin-top: 10px;        /* Espaçamento entre título e navegação */
+}
+
+header a {
+	color: white;            /* Cor do link */
+	text-decoration: none;   /* Remove o sublinhado */
+	margin: 0 15px;          /* Espaçamento entre os links */
+	font-size: 16px;         /* Tamanho da fonte */
+}
+
+header nav a:hover {
+	color: #f39c12;          /* Altera a cor ao passar o mouse */
+}
+
+footer {
+	background-color: #555;  /* Cor de fundo mais escura que o corpo */
+	color: white;            /* Texto branco */
+	padding: 20px 0;         /* Espaçamento interno */
+	text-align: center;      /* Alinhamento central */
+	position: fixed;      /* Pode ser fixo ou relativo dependendo do layout */
+	bottom: 0;               /* Fixa na parte inferior, caso necessário */
+	width: 100%;             /* O rodapé ocupa toda a largura da tela */
+	margin-top: 20px;        /* Espaçamento acima do rodapé */
+}
+
+footer p {
+	font-size: 14px;         /* Tamanho da fonte */
+	margin: 0;               /* Remove a margem */
+}
+
+footer a {
+	color: white;            /* Cor do link */
+	text-decoration: none;   /* Remove o sublinhado */
+}
+
+footer a:hover {
+	color: #f39c12;          /* Altera a cor ao passar o mouse */
+}
+
+

@@ -1,4 +1,5 @@
-<h1>Desenvolvimento Web</h1>
+<link rel="stylesheet" href="../css/style.css">
+<h1 class="header h1">Desenvolvimento Web</h1>
 
 
 <?php
@@ -8,7 +9,7 @@ if (session_status() == PHP_SESSION_NONE) {
 $paginaAtual = basename($_SERVER['PHP_SELF']);
 
 if ($paginaAtual !== 'index.php') {
-    echo '<a href="../paginas/home.php">Home</a>';
+    echo '<a class="header a" href="../paginas/home.php">Home</a>';
     
 
 }
@@ -16,11 +17,10 @@ if ($paginaAtual !== 'index.php') {
 if (isset($_SESSION['name'])) {
     echo '<h1>Login: ' . strtoupper($_SESSION['name']) . '</h1>';
             
-     echo '<a href="../class/logout.php">Logout</a>';
+     echo '<a href="../inc/logout.php">Logout</a>';
 
 }
 
-
-
+date_default_timezone_set('America/Fortaleza');
 
 ?>

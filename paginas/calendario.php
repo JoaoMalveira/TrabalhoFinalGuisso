@@ -112,5 +112,10 @@
         ?>
     </footer>
 </body>
+<footer>
+    <?php
+        include "../inc/rodape.php"
 
+    ?>
+    </footer>
 </html>

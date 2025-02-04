@@ -1,35 +1,33 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
-
+<header>
+<?php
+include '../inc/cabecalho.php';
+?>
+</header>
 <body>
-	<header>
-		<?php include_once "../inc/cabecalho.php"; ?>
-	</header>
+    <div class="container">
+        <h2>Login</h2>
+        <form method="POST" action="login.php">
+            <label for="usuario">Usuário:</label>
+            <input type="text" id="usuario" name="usuario" required>
 
-	<body>
-		<form action="home.php" method="post">
-			<fieldset>
-				<legend>Login</legend>
-				<label for="name">Nome de usuário:</label>
-				<input type="text" name="name" id="name"> <br>
-				<label for=""></label>
-				<label for="senha">Senha:</label>
-				<input type="password" name="senha" id="senha"> <br>
-				<input type="submit" value="Enviar">
-			</fieldset>
-		</form>
-	</body>
-	<footer>
-		<?php include_once "../inc/rodape.php"; ?>
-	</footer>
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required>
 
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
 </body>
-
+<?php 
+include '../inc/rodape.php';
+?>
 </html>

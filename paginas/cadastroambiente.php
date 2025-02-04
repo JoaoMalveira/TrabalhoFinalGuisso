@@ -1,36 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Ambiente</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
+<header>
+	<?php
+include '../inc/cabecalho.php';
+?>
+</header>
 <body>
-	<header>
-		<?php
-	require '../class/rb.php'; // Inclui a biblioteca RedBeanPHP
-	?>
-	</header>
-	<main>
-	// Conectar ao banco de dados usando RedBeanPHP
-R::setup('mysql:host=localhost;dbname=cadastro_db', 'root', '');
+    <div class="container-1">
+        <h2>Cadastro de Ambiente</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <label for="nome">Nome do Ambiente:</label>
+            <input type="text" id="nome" name="nome" required>
 
-if (!R::testConnection()) {
-    die("Erro na conexão com o banco de dados");
-}
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" name="descricao" required></textarea>
 
-// Cadastro de ambientes
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nome_ambiente'])) {
-    $ambiente = R::dispense('ambientes');
-    $ambiente->nome = $_POST['nome_ambiente'];
-    R::store($ambiente);
-    header("Location: index.php"); // Redireciona para evitar reenvio de formulário
-    exit;
-}
-	</main>
-	
+            <label for="imagem">Imagem:</label>
+            <input type="file" id="imagem" name="imagem" accept="image/*" required>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+    </div>
 </body>
+<footer>
+    <?php
+        include "../inc/rodape.php"
+
+    ?>
+    </footer>
 </html>
-
-<?php
-
