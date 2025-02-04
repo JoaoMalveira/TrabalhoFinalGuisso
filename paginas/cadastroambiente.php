@@ -27,9 +27,16 @@ include '../inc/cabecalho.php';
             <label for="imagem">Imagem:</label>
             <input type="file" id="imagem" name="imagem" accept="image/*" required>
 
+            <label for="tipo">Escolha um Tipo:</label>
+            <select id="tipo" name="tipo">
+                <option value="Laboratorio">Laboratório</option>
+                <option value="Sala">Sala</option>
+            </select>
+
             <button type="submit">Cadastrar</button>
         </form>
     </div>
+    
 </body>
 <footer>
     <?php

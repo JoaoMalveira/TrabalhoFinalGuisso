@@ -62,7 +62,6 @@ require '../inc/validacao.php'; // Inclui a validação de login
             $mes = max(1, min(12, $mes)); 
 
             $calendario = "<table border='1'>";
-            $calendario .= "<caption>{$nomeMeses[$mes]} de $ano</caption>";
             $calendario .= "<tr><th>Dom</th><th>Seg</th><th>Ter</th><th>Qua</th><th>Qui</th><th>Sex</th><th>Sáb</th></tr>";
             $calendario .= "<tr>";
 
