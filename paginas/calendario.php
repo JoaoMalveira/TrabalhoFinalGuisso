@@ -31,7 +31,7 @@
     <header>
         <?php
         include "../inc/cabecalho.php";
-      //  include "../inc/validacao.php"
+       include "../inc/validacao.php";
 
         ?>
     </header>
@@ -103,14 +103,6 @@
             ?>
         </div>
     </main>
-
-
-    <footer>
-        <?php
-        include "../inc/rodape.php"
-
-        ?>
-    </footer>
 </body>
 <footer>
     <?php

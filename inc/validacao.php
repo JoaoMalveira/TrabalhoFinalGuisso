@@ -1,15 +1,12 @@
 <?php
 
 
- if (!isset($_SESSION['name'])){
-     header('Location: ../paginas/index.php');
+session_start(); // Inicia a sessão
 
-     exit;  
- }
-
- if (isset($_POST['name'])){
-   echo '<p>' . $_POST['name'] . '</p>';
-   echo "<a href='../paginas/logout.php'></a>";
-
-}   
+// Verifica se o usuário está logado
+if (!isset($_SESSION['usuario'])) {
+    // Se não estiver logado, redireciona para a página de login
+    header('Location: index.php');
+    exit(); // Encerra a execução do script
+}
 ?>

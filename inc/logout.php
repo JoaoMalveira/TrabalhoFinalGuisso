@@ -6,4 +6,4 @@ unset($_SESSION['nome']);
 
 session_destroy();
 
-header('Location:index.php');
+header('Location:../paginas/index.php');

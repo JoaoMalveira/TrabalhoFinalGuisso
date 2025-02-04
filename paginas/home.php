@@ -1,3 +1,7 @@
+
+<?php
+require '../inc/validacao.php'; // Inclui a validação de login
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +15,7 @@ include '../inc/cabecalho.php';
 ?>
 </header>
 <body>
-
+<p>Teste</p>
 </body>
 <footer>
     <?php

@@ -12,7 +12,7 @@
 	$usuario = R::dispense( "usuario");
             $usuario->usuario = $_POST['username'];
             $usuario->nome = $_POST['fullname'];
-            $usuario->senha = $_POST['senha'];
+            $usuario->senha = password_hash($_POST['senha'],PASSWORD_DEFAULT);
             $usuario->admin = $_POST['admin'];
             $id = R::store($usuario);
 

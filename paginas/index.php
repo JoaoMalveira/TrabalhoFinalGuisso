@@ -11,6 +11,7 @@
 <header>
 <?php
 include '../inc/cabecalho.php';
+
 ?>
 </header>
 <body>
@@ -27,7 +28,9 @@ include '../inc/cabecalho.php';
         </form>
     </div>
 </body>
-<?php 
-include '../inc/rodape.php';
-?>
+<footer>
+    <?php
+    include '../inc/rodape.php';
+    ?>
+</footer>
 </html>

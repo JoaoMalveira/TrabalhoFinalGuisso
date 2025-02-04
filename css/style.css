@@ -156,6 +156,12 @@ footer p {
 	margin: 0;               /* Remove a margem */
 }
 
+.pa {
+	font-size: 14px;         /* Tamanho da fonte */
+	margin: 0;               /* Remove a margem */
+	text-align: left; /* Alinhamento a direita */
+}
+
 footer a {
 	color: white;            /* Cor do link */
 	text-decoration: none;   /* Remove o sublinhado */
