@@ -1,4 +1,5 @@
 <?php
+require '../inc/validacao.php'; // Inclui a validação de login
 session_start();
 require 'rb.php'; // Inclui o RedBeanPHP
 R::setup('mysql:host=127.0.0.1;dbname=reservas', 'root', ''); // Configuração do banco de dados

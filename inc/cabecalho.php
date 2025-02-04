@@ -10,8 +10,6 @@ $paginaAtual = basename($_SERVER['PHP_SELF']);
 
 if ($paginaAtual !== 'index.php') {
     echo '<a class="header a" href="../paginas/home.php">Home</a>';
-    
-
 }
 
 if (isset($_SESSION['name'])) {

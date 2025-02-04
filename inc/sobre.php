@@ -6,12 +6,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 </head>
+<header>
+<?php
+include '../inc/cabecalho.php';
+?>
+</header>
 <body>
-<p>
-	<br>
+<div>
 	&copy; João Eduardo Lopes Malveira 2025; <br>
-  malveirajoao@gmail.comm
-<br>
-</p>
+	<br>
+					malveirajoao@gmail.com
+</div>
 </body>
+<footer>
+<?php
+include '../inc/rodape.php';
+?>
+</footer>
 </html>

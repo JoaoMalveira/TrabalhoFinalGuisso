@@ -1,3 +1,6 @@
+<?php
+require '../inc/validacao.php'; // Inclui a validação de login
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -15,11 +18,11 @@ include '../inc/cabecalho.php';
     <div class="container">
         <h2>Cadastro de Usuário</h2>
         <form method="POST" action="../bd/userbd.php">
-            <label for="username">Nome de Usuário:</label>
-            <input type="text" id="username" name="username" required>
+            <label for="usuario">Nome de Usuário:</label>
+            <input type="text" id="usuario" name="usuario" required>
 
-            <label for="fullname">Nome Completo:</label>
-            <input type="text" id="fullname" name="fullname" required>
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" name="nome" required>
 
             <label for="Senha">Senha:</label>
             <input type="password" id="senha" name="senha" required>

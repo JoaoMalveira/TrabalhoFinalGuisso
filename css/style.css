@@ -129,6 +129,13 @@ header nav {
 	margin-top: 10px;        /* Espaçamento entre título e navegação */
 }
 
+.apa {
+	color: black;            /* Cor do link */
+	text-decoration: none;   /* Remove o sublinhado */
+	margin: 0 15px;          /* Espaçamento entre os links */
+	font-size: 16px;         /* Tamanho da fonte */
+}
+
 header a {
 	color: white;            /* Cor do link */
 	text-decoration: none;   /* Remove o sublinhado */
@@ -171,4 +178,22 @@ footer a:hover {
 	color: #f39c12;          /* Altera a cor ao passar o mouse */
 }
 
+.container-1 a {
+	display: block;
+	padding: 10px 0;
+	text-align: center;
+	text-decoration: none;
+	color: #333;
+	font-size: 16px;
+	font-weight: bold;
+	transition: 0.3s;
+}
+
+.container-1 a:hover {
+	color: #000;
+}
+
+.container-1 a:not(:last-child) {
+	border-bottom: 1px solid #ccc; /* Linha abaixo de cada link, exceto o último */
+}
 

@@ -1,3 +1,6 @@
+<?php
+require '../inc/validacao.php'; // Inclui a validação de login
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -14,7 +17,7 @@ include '../inc/cabecalho.php';
 <body>
     <div class="container-1">
         <h2>Cadastro de Ambiente</h2>
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data" action="../bd/ambientesbd.php">
             <label for="nome">Nome do Ambiente:</label>
             <input type="text" id="nome" name="nome" required>
 
