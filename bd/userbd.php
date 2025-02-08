@@ -1,26 +1,25 @@
 <?php
-require '../inc/validacao.php'; // Inclui a validação de login
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-</head>
-<body>
-	<?php
-	require_once '../class/rb.php';
-	R::setup('mysql:host=127.0.0.1;dbname=reservas', 'root', '');
-	$usuario = R::dispense( "usuario");
-            $usuario->usuario = $_POST['usuario'];
-            $usuario->nome = $_POST['nome'];
-            $usuario->senha = password_hash($_POST['senha'],PASSWORD_DEFAULT);
-            $usuario->admin = $_POST['admin'];
-            $id = R::store($usuario);
+require '../inc/validacao.php'; // Verifica se o usuário está autenticado
+
+require_once '../class/rb.php';
+R::setup('mysql:host=127.0.0.1;dbname=reservas', 'root', '');
 
 
-            R::close(); 
+if ($usuario_existente) {
+    $_SESSION['erro'] = "Este nome de usuário já está sendo utilizado.";
+    header("Location: cadastrousuario.php"); // Redireciona de volta ao formulário
+    exit;
+} else {
+    $usuario = R::dispense("usuario");
+    $usuario->usuario = $_POST['usuario'];
+    $usuario->nome = $_POST['nome'];
+    $usuario->senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+    $admin = isset($_POST["admin"]) ? 1 : 0;
+    $usuario->admin = $admin;
+    R::store($usuario);
+
+    $_SESSION['sucesso'] = "Usuário cadastrado com sucesso!";
+    header("Location: ../paginas/cadastrousuario.php");
+    exit;
+}
 ?>
-</body>
-</html>
