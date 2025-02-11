@@ -5,9 +5,9 @@ R::setup('mysql:host=127.0.0.1;dbname=reservas', 'root', ''); // Configuração 
 
 
 // Verifica se a tabela 'usuario' existe e está vazia
-if (R::count('usuario') == 0) {
+if (R::count('usuarios') == 0) {
     // Cria um usuário padrão (administrador)
-    $usuarioPadrao = R::dispense('usuario');
+    $usuarioPadrao = R::dispense('usuarios');
     $usuarioPadrao->nome = 'Administrador Padrão';
     $usuarioPadrao->usuario = 'root';
     $usuarioPadrao->senha = password_hash('toor', PASSWORD_BCRYPT); // Senha criptografada

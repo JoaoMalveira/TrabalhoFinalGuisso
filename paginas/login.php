@@ -1,24 +1,26 @@
 <?php
 session_start();
-require_once '../class/rb.php'; // Inclui a configuração do banco de dados
-$mensagem = ''; // Variável para exibir mensagens de erro
-R::setup('mysql:host=127.0.0.1;dbname=reservas', 'root', ''); // Configuração do banco de dados
+require_once '../class/rb.php';
+$mensagem = '';
+R::setup('mysql:host=127.0.0.1;dbname=reservas', 'root', '');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $usuario = $_POST['usuario'];
     $senha = $_POST['senha'];
 
-    // Verifica se o usuário existe no banco de dados
-    $user = R::findOne('usuario', 'usuario = ?', [$usuario]);
+    $user = R::findOne('usuarios', 'usuario = ?', [$usuario]); // Nome da tabela corrigido
 
     if ($user && password_verify($senha, $user->senha)) {
         // Login bem-sucedido
-        $_SESSION['usuario'] = $user->usuario;
-        header('Location: home.php'); // Redireciona para a página home
+        $_SESSION['usuarios_id'] = $user->id; // Define o ID do usuário na sessão
+        header('Location: home.php');
         exit();
     } else {
         // Login falhou
-				header('Location: index.php'); // Redireciona para a pág Index
+        $mensagem = "Usuário ou senha incorretos."; // Mensagem de erro
+        // Redireciona de volta para index.php com a mensagem de erro
+        header('Location: index.php?erro=' . urlencode($mensagem)); 
+        exit();
     }
 }
 ?>

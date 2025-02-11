@@ -2,7 +2,7 @@
 require_once '../class/rb.php';
 R::setup('mysql:host=127.0.0.1;dbname=reservas', 'root', '');
 
-$usuarios = R::findAll('usuario');
+$usuarios = R::findAll('usuarios');
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +11,6 @@ $usuarios = R::findAll('usuario');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Usuários</title>
-    <link rel="stylesheet" href="../css/estilo.css"> <!-- CSS global -->
     <style>
 
         table {

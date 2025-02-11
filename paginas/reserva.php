@@ -1,5 +1,5 @@
 <?php
-include '../inc/validacao.php';
+require '../inc/validacao.php';
 require '../class/rb.php';
 R::setup('mysql:host=127.0.0.1;dbname=reservas', 'root', '');
 
@@ -8,13 +8,6 @@ if (!isset($_POST["data"]) || empty($_POST["data"])) {
     header("Location: calendario.php");
     exit();
 }
-
-if (!isset($_SESSION['usuario_id'])) {
-	die("Erro: Usuário não autenticado.");
-}
-
-$usuario_id = $_SESSION['usuario_id'];
-
 $dataSelecionada = $_POST["data"];
 $tipoSelecionado = $_POST["tipo"] ?? "";
 

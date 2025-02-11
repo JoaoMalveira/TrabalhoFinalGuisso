@@ -4,7 +4,7 @@ R::setup('mysql:host=127.0.0.1;dbname=reservas', 'root', '');
 
 // Função para verificar se o nome de usuário já existe
 function nomeUsuarioExiste($nome_usuario, $id = null) {
-    $usuario = R::findOne('usuario', 'usuario = ?', [$nome_usuario]);
+    $usuario = R::findOne('usuarios', 'usuario = ?', [$nome_usuario]);
     return $usuario && ($usuario->id != $id);
 }
 
@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['editar'])) {
     if (nomeUsuarioExiste($usuario, $id)) {
         echo "<script>alert('O nome de usuário já está em uso.');</script>";
     } else {
-        $usuario = R::load('usuario', $id);
+        $usuario = R::load('usuarios', $id);
         if ($usuario->id) {
             $usuario->usuario = $usuario;
             $usuario->nome_completo = $_POST['nome'];
@@ -30,14 +30,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['editar'])) {
 // Excluir usuário
 if (isset($_GET['excluir'])) {
     $id = $_GET['excluir'];
-    $usuario = R::load('usuario', $id);
+    $usuario = R::load('usuarios', $id);
     if ($usuario->id) {
         R::trash($usuario);
     }
 }
 
 // Buscar usuários
-$usuarios = R::findAll('usuario');
+$usuarios = R::findAll('usuarios');
 ?>
 
 <!DOCTYPE html>
@@ -82,6 +82,7 @@ $usuarios = R::findAll('usuario');
         </tr>
         <?php endforeach; ?>
     </table>
+    <a href="controleusuario.php" class="botao">🔙 Voltar</a>
 		</div>
 		</main>
 		<footer>

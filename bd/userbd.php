@@ -10,7 +10,7 @@ if ($usuario_existente) {
     header("Location: cadastrousuario.php"); // Redireciona de volta ao formulário
     exit;
 } else {
-    $usuario = R::dispense("usuario");
+    $usuario = R::dispense("usuarios");
     $usuario->usuario = $_POST['usuario'];
     $usuario->nome = $_POST['nome'];
     $usuario->senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);

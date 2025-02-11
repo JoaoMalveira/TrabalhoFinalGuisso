@@ -24,7 +24,7 @@ include '../inc/cabecalho.php';
             <label for="senha">Senha:</label>
             <input type="password" id="senha" name="senha" required>
 
-            <button type="submit">Entrar</button>
+            <button type="submit" name="login">Entrar</button>
         </form>
     </div>
 </body>
