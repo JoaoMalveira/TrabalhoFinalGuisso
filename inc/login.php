@@ -13,13 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($user && password_verify($senha, $user->senha)) {
         // Login bem-sucedido
         $_SESSION['usuarios_id'] = $user->id; // Define o ID do usuário na sessão
-        header('Location: home.php');
+        header('Location: ../paginas/home.php');
         exit();
     } else {
         // Login falhou
         $mensagem = "Usuário ou senha incorretos."; // Mensagem de erro
         // Redireciona de volta para index.php com a mensagem de erro
-        header('Location: index.php?erro=' . urlencode($mensagem)); 
+        header('Location: ../paginas/index.php?erro=' . urlencode($mensagem)); 
         exit();
     }
 }

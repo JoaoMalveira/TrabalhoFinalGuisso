@@ -17,7 +17,7 @@ include '../inc/cabecalho.php';
 <body>
     <div class="container">
         <h2>Login</h2>
-        <form method="POST" action="login.php">
+        <form method="POST" action="../inc/login.php">
             <label for="usuario">Usuário:</label>
             <input type="text" id="usuario" name="usuario" required>
 

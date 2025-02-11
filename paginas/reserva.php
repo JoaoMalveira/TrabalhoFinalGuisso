@@ -82,7 +82,7 @@ if (!empty($tipoSelecionado)) {
 	<header>
 		<?php include '../inc/cabecalho.php'; ?>
 	</header>
-
+<br>
 <div class="container">
     <h2>Reserva de Ambiente</h2>
 

@@ -15,6 +15,9 @@ if (isset($_GET['erro'])) {
     echo "<p style='color: red;'>$mensagem</p>";
 }
 
+$salas = R::find('ambientes', 'tipo = ?', ['Sala']);
+$laboratorios = R::find('ambientes', 'tipo = ?', ['Laboratório']);
+
 
 // Busca o nome do usuário no banco de dados
 $user = R::load('usuarios', $_SESSION['usuarios_id']);
@@ -25,6 +28,7 @@ $admin = isset($_SESSION["admin"]) ? $_SESSION["admin"] : false; // Mantém a ve
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,10 +38,14 @@ $admin = isset($_SESSION["admin"]) ? $_SESSION["admin"] : false; // Mantém a ve
 <header>
     <?php include_once '../inc/cabecalho.php'; ?>
 </header>
+
 <body>
     <div>
-        <h4>Bem vindo, <?php echo $usuario; ?>!</h4>
+
         <div class="container-1">
+            <fieldset>
+                <h4>Bem vindo, <?php echo $usuario; ?>!</h4>
+            </fieldset>
             <a href="calendario.php" class="apa">Página de Reservas</a>
             <a href="listareserva.php" class="apa">Minhas Reservas</a>
             <a href="controleusuario.php" class="apa">Controle de Usuários</a>
@@ -45,8 +53,33 @@ $admin = isset($_SESSION["admin"]) ? $_SESSION["admin"] : false; // Mantém a ve
             <a href="gerenciarreservas.php">Gerenciar Reservas</a>
         </div>
     </div>
+    </div>
+    <h2 class="mensagem">Desça a página para visualizar os nossos ambientes de aprendizado</h2>
+    <h3>Salas</h3>
+    <div class="ambiente-container">
+        <?php foreach ($salas as $sala) { ?>
+            <div class="card">
+                <img src="<?php echo '../bd/imgs/' . $sala->imagem; ?>" alt="Imagem da sala">
+                <h3><?php echo $sala->nome; ?></h3>
+                <p><?php echo $sala->descricao; ?></p>
+            </div>
+        <?php } ?>
+        </div>
+        <br>
+        <br>
+        <h3>Laboratórios</h3>
+        <div class="ambiente-container">
+            <?php foreach ($laboratorios as $laboratorio) { ?>
+                <div class="card">
+                    <img src="<?php echo '../bd/imgs/' . $laboratorio->imagem; ?>" alt="Imagem do laboratório">
+                    <h3><?php echo $laboratorio->nome; ?></h3>
+                    <p><?php echo $laboratorio->descricao; ?></p>
+                </div>
+            <?php } ?>
+            </div>
 </body>
 <footer>
     <?php include "../inc/rodape.php"; ?>
 </footer>
+
 </html>

@@ -27,13 +27,13 @@ $reserva->ambiente_id = $ambiente_id;
 $reserva->nome_ambiente = $ambiente->nome;
 $reserva->imagem_ambiente = $ambiente->imagem;
 $reserva->nome = $usuario->nome; // Insere o nome do usuário
-$reserva->usuario = $usuario->usuario;
+$reserva->nome_usuario = $usuario->usuario;
 
 $reserva->usuario = $usuario;
 
 R::store($reserva);
 
 // ... (redirecionamento)
-header('../paginas/calendario.php');
+header('../paginas/home.php');
 exit();
 ?>
