@@ -1,6 +1,6 @@
 <?php
-require_once '../class/rb.php';
-R::setup('mysql:host=127.0.0.1;dbname=reservas', 'root', '');
+require '../inc/validacao.php'; // Inclui a validação 
+require '../inc/validaadmin.php'; // Inclui a validação de admin
 
 $usuarios = R::findAll('usuarios');
 ?>
@@ -56,7 +56,7 @@ $usuarios = R::findAll('usuarios');
         <?php include '../inc/cabecalho.php'; ?>
     </header>
 
-    <div>
+    <div class="container">
         <h2>Lista de Usuários</h2>
 
         <table>

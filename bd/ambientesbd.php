@@ -2,6 +2,7 @@
 // Inicia a sessão para armazenar mensagens de feedback
 session_start();
 require '../inc/validacao.php';
+require '../inc/validaadmin.php'; // Inclui a validação de admin
 
 // Verifica se todos os dados necessários foram enviados
 if (isset($_POST['tipo'], $_POST['nome'], $_POST['descricao'], $_FILES['imagem'])) {

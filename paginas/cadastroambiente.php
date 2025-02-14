@@ -1,5 +1,6 @@
 <?php
 require '../inc/validacao.php'; // Inclui a validação de login
+require '../inc/validaadmin.php'; // Inclui a validação de admin
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">

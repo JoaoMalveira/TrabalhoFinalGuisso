@@ -1,6 +1,6 @@
 
 * {
-	font-family: Arial, sans-serif;
+	font-family: Arial, sans-serif;;
 }
 /* Estilos para a tabela */
 table {
@@ -46,11 +46,29 @@ footer {
 body {
 	margin: auto 0;
 	padding: 0;
+	background-color: burlywood;
+}
+
+.div {
+	background-color: burlywood;
+}
+
+.container-2 {
+	max-width: 300px;
+	margin: 0 auto;
+	background-color: #ffffff;
+	padding: 20px;
+	border-radius: 6px;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .container {
-	max-width: 400px;
+	width: 800px;
 	margin: 0 auto;
+	background-color: #ffffff;
+	padding: 20px;
+	border-radius: 6px;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .container-1 {
@@ -234,7 +252,6 @@ footer a:hover {
 	color: #333;
 	font-size: 16px;
 	font-weight: bold;
-	transition: 0.3s;
 }
 
 .container-1 a:hover {
@@ -273,7 +290,7 @@ footer a:hover {
 	padding: 10px;
 	box-sizing: border-box;
 	display: flex;
-	flex-direction: column;
+	flex-direction: column;;
 }
 
 .card img {

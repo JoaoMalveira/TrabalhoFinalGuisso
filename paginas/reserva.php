@@ -94,6 +94,10 @@ $horaFim = $_POST["hora_fim"] ?? "";
 
         <?php } ?>
     </div>
+    <br>
+    <br>
+    <br>
+    
     <footer>
         <?php require '../inc/rodape.php'; ?>
     </footer>

@@ -49,7 +49,7 @@ if (isset($_SESSION['usuarios_id'])) {
 </header>
 
 <body>
-    <div>
+    <div style="background-color: burlywood;">
 
         <div class="container-1">
             <?php if ($logado): ?>
@@ -65,33 +65,45 @@ if (isset($_SESSION['usuarios_id'])) {
                     <a href="gerenciarreservas.php">Gerenciar Reservas</a>
                 <?php endif; ?>
             <?php else: ?>
-                Faça<a href="index.php"> Login </a>para entrar no sistema.
+               <p><a href="index.php">Faça login para entrar no sistema</a></p>
             <?php endif; ?>
         </div>
     </div>
     </div>
-    <h2 class="mensagem">Desça a página para visualizar os nossos ambientes de aprendizado</h2>
-    <h3>Salas</h3>
-    <div class="ambiente-container">
-        <?php foreach ($salas as $sala) { ?>
-            <div class="card">
-                <img src="<?php echo '../bd/imgs/' . $sala->imagem; ?>" alt="Imagem da sala">
-                <h3><?php echo $sala->nome; ?></h3>
-                <p><?php echo $sala->descricao; ?></p>
-            </div>
-        <?php } ?>
-    </div>
-    <br>
-    <br>
-    <h3>Laboratórios</h3>
-    <div class="ambiente-container">
-        <?php foreach ($laboratorios as $laboratorio) { ?>
-            <div class="card">
-                <img src="<?php echo '../bd/imgs/' . $laboratorio->imagem; ?>" alt="Imagem do laboratório">
-                <h3><?php echo $laboratorio->nome; ?></h3>
-                <p><?php echo $laboratorio->descricao; ?></p>
-            </div>
-        <?php } ?>
+    <div style="background-color: burlywood;">
+        <br>
+        <br>
+        <h2 class="mensagem">Desça a página para visualizar os nossos ambientes de aprendizado</h2>
+        <h3>Salas</h3>
+        <div class="ambiente-container">
+            <?php foreach ($salas as $sala) { ?>
+                <div class="card" style="background-color: gray;">
+                    <img src="<?php echo '../bd/imgs/' . $sala->imagem; ?>" alt="Imagem da sala">
+                    <h3><?php echo $sala->nome; ?></h3>
+                    <p><?php echo $sala->descricao; ?></p>
+                </div>
+            <?php } ?>
+        </div>
+        <br>
+        <br>
+        <h3>Laboratórios</h3>
+        <div class="ambiente-container">
+            <?php foreach ($laboratorios as $laboratorio) { ?>
+                <div class="card" style="background-color: gray">
+                    <img src="<?php echo '../bd/imgs/' . $laboratorio->imagem; ?>" alt="Imagem do laboratório">
+                    <h3><?php echo $laboratorio->nome; ?></h3>
+                    <p><?php echo $laboratorio->descricao; ?></p>
+                </div>
+            <?php } ?>
+        </div>
+        <br>
+        <br>
+        <?php 
+        if (isset($_SESSION['negado'])) {
+            echo "<div class='alerta erro'>" . $_SESSION['negado'] . "</div>";
+            unset($_SESSION['negado']); // Apaga a mensagem após exibir
+        }
+        ?>
     </div>
 </body>
 <footer>

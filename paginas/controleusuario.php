@@ -1,4 +1,5 @@
-<?php require '../inc/validacao.php'; ?>
+<?php require '../inc/validacao.php'; 
+require '../inc/validaadmin.php'; // Inclui a validação de admin ?>
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -15,7 +16,7 @@
         <?php include '../inc/cabecalho.php'; ?>
     </header>
 
-    <div class="container">
+    <div class="container-2">
         <h2>Controle de Usuários</h2>
 
         <div>

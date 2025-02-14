@@ -1,8 +1,6 @@
 <?php
 require '../inc/validacao.php'; // Verifica se o usuário está autenticado
-
-require_once '../class/rb.php';
-R::setup('mysql:host=127.0.0.1;dbname=reservas', 'root', '');
+require '../inc/validaadmin.php'; // Inclui a validação de admin
 
 // Verifica se o nome de usuário já existe
 $usuario_existente = R::findOne('usuarios', 'usuario = ?', [$_POST['usuario']]);

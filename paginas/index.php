@@ -15,7 +15,7 @@
 </header>
 
 <body>
-    <div class="container">
+    <div class="container-2">
         <h2>Login</h2>
         <form method="POST" action="../inc/login.php">
             <label for="usuario">Usuário:</label>

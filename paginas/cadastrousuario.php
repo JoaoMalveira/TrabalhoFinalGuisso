@@ -1,5 +1,6 @@
 <?php
 require '../inc/validacao.php'; // Inclui a validação de login
+require '../inc/validaadmin.php'; // Inclui a validação de admin
 
 ?>
 <!DOCTYPE html>
@@ -17,7 +18,7 @@ require '../inc/validacao.php'; // Inclui a validação de login
 </header>
 
 <body>
-    <div class="container">
+    <div class="container-1">
         <h2>Cadastro de Usuário</h2>
         <form method="POST" action="../bd/userbd.php">
             <label for="usuario">Nome de Usuário:</label>
@@ -34,6 +35,7 @@ require '../inc/validacao.php'; // Inclui a validação de login
             </label>
 
             <button type="submit">Cadastrar</button>
+            <a href="controleusuario.php" class="botao">🔙 Voltar</a>
         </form>
     </div>
 </body>

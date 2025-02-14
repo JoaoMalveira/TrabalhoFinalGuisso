@@ -1,7 +1,6 @@
 <?php
 include '../inc/validacao.php';
-require '../class/rb.php';
-R::setup('mysql:host=127.0.0.1;dbname=reservas', 'root', '');
+include '../inc/validaadmin.php';
 
 // Função para verificar se o nome de usuário já existe
 function nomeUsuarioExiste($nome_usuario, $id = null)
@@ -57,40 +56,40 @@ $usuarios = R::findAll('usuarios');
         <?php include '../inc/cabecalho.php'; ?>
     </header>
     <main>
-        <b></b>
-        <h3>Gerenciar Usuários</h3> <br>
-        <a href="controleusuario.php" class="botao">🔙 Voltar</a>
+        <div class="container">
+            <h3>Gerenciar Usuários</h3> <br>
+            <a href="controleusuario.php" class="botao">🔙 Voltar</a>
 
-        <table border="1">
-            <tr>
-                <th>ID</th>
-                <th>Usuário</th>
-                <th>Nome Completo</th>
-                <th>Admin</th>
-                <th>Ações</th>
-            </tr>
-            <?php foreach ($usuarios as $usuario): ?>
+            <table border="1">
                 <tr>
-                    <td><?= $usuario->id ?></td>
-                    <td><?= htmlspecialchars($usuario->usuario) ?></td>
-                    <td><?= htmlspecialchars($usuario->nome) ?></td>
-                    <td><?= $usuario->admin ? 'Sim' : 'Não' ?></td>
-                    <td>
-                        <form method="POST">
-                            <input type="hidden" name="id" value="<?= $usuario->id ?>">
-                            <input type="text" name="nome_usuario" value="<?= htmlspecialchars($usuario->usuario) ?>" required>
-                            <input type="text" name="nome_completo" value="<?= htmlspecialchars($usuario->nome) ?>" required>
-                            <input type="checkbox" name="admin" <?= $usuario->admin ? 'checked' : '' ?>> Admin
-                            <button type="submit" name="editar">Salvar</button>
-                        </form>
-                        <a href="?excluir=<?= $usuario->id ?>" onclick="return confirm('Tem certeza?')">Excluir</a> <br>
-                    </td>
+                    <th>ID</th>
+                    <th>Usuário</th>
+                    <th>Nome Completo</th>
+                    <th>Admin</th>
+                    <th>Ações</th>
                 </tr>
-            <?php endforeach; ?>
-        </table>
-        <br>
-        <br>
-        <br>
+                <?php foreach ($usuarios as $usuario): ?>
+                    <tr>
+                        <td><?= $usuario->id ?></td>
+                        <td><?= htmlspecialchars($usuario->usuario) ?></td>
+                        <td><?= htmlspecialchars($usuario->nome) ?></td>
+                        <td><?= $usuario->admin ? 'Sim' : 'Não' ?></td>
+                        <td>
+                            <form method="POST">
+                                <input type="hidden" name="id" value="<?= $usuario->id ?>">
+                                <input type="text" name="nome_usuario" value="<?= htmlspecialchars($usuario->usuario) ?>" required>
+                                <input type="text" name="nome_completo" value="<?= htmlspecialchars($usuario->nome) ?>" required>
+                                <input type="checkbox" name="admin" <?= $usuario->admin ? 'checked' : '' ?>> Admin
+                                <button type="submit" name="editar">Salvar</button>
+                            </form>
+                            <a href="?excluir=<?= $usuario->id ?>" onclick="return confirm('Tem certeza?')">Excluir</a> <br>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+            <br>
+            <br>
+            <br>
         </div>
     </main>
     <footer>

@@ -1,8 +1,6 @@
 <?php
 require '../inc/validacao.php'; // Inclui a validação de login
 require_once '../class/rb.php';
-R::setup('mysql:host=127.0.0.1;dbname=reservas', 'root', ''); // Configuração do banco de dados
-$reservas = R::find('reservas', 'usuario_id = ?', [$_SESSION['usuarios_id']]);
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +35,7 @@ $reservas = R::find('reservas', 'usuario_id = ?', [$_SESSION['usuarios_id']]);
 </header>
 
 <body>
-	<div>
+	<div class="container">
 		<h2>Minhas Reservas</h2>
 
 		<?php if (empty($reservas)) { ?>
