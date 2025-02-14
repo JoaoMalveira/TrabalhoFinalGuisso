@@ -1,4 +1,5 @@
 <?php
+include '../inc/validacao.php';
 require '../class/rb.php';
 R::setup('mysql:host=127.0.0.1;dbname=reservas', 'root', '');
 
@@ -53,8 +54,9 @@ $usuarios = R::findAll('usuarios');
 		<?php include '../inc/cabecalho.php'; ?>
 	</header>
 		<main>
-		<div class="container-2">
+		<b class="container-2">
 		<h3>Gerenciar Usuários</h3> <br>
+        <a href="controleusuario.php" class="botao">🔙 Voltar</a>
     <table border="1">
         <tr>
             <th>ID</th>
@@ -77,12 +79,14 @@ $usuarios = R::findAll('usuarios');
                     <input type="checkbox" name="admin" <?= $usuario->admin ? 'checked' : '' ?>> Admin
                     <button type="submit" name="editar">Salvar</button>
                 </form>
-                <a href="?excluir=<?= $usuario->id ?>" onclick="return confirm('Tem certeza?')">Excluir</a>
+                <a href="?excluir=<?= $usuario->id ?>" onclick="return confirm('Tem certeza?')">Excluir</a> <br>
             </td>
         </tr>
         <?php endforeach; ?>
     </table>
-    <a href="controleusuario.php" class="botao">🔙 Voltar</a>
+    <br>
+    <br>
+    <br>
 		</div>
 		</main>
 		<footer>

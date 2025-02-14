@@ -1,14 +1,5 @@
 <?Php 
-require '../inc/validacao.php'; 
-if (isset($_SESSION['erro_reserva'])): ?>
-    <p style="color: red;"><?php echo $_SESSION['erro_reserva']; ?></p>
-    <?php unset($_SESSION['erro_reserva']); // Limpa a mensagem ?>
-<?php endif; ?>
-
-<?php if (isset($_SESSION['reserva_sucesso'])): ?>
-    <p style="color: green;"><?php echo $_SESSION['reserva_sucesso']; ?></p>
-    <?php unset($_SESSION['reserva_sucesso']); // Limpa a mensagem ?>
-<?php endif; ?>
+require '../inc/validacao.php'; ?>
 
 <!DOCTYPE html>
 <html lang="pt">
@@ -61,7 +52,7 @@ if (isset($_SESSION['erro_reserva'])): ?>
 <div class="container">
     <h2>Escolha uma Data</h2>
     
-    <form action="reserva.php" method="POST">
+    <form action="resultadoconsulta.php" method="POST">
         <label for="data">Data:</label>
         <input type="date" id="data" name="data" required>
         <button type="submit">Continuar</button>

@@ -1,39 +1,47 @@
 <?php
-session_start();
-// reservabd.php
-include '../inc/validacao.php'; // Inclua o arquivo de validação
-require '../class/rb.php'; // Inclui o RedBeanPHP
-R::setup('mysql:host=127.0.0.1;dbname=reservas', 'root', ''); // Configuração do banco de dados
+require '../inc/validacao.php';
+require '../class/rb.php';
+R::setup('mysql:host=127.0.0.1;dbname=reservas', 'root', '');
+    $data = $_POST['data'];
+    $tipo = $_POST['tipo'];
+    $ambiente_id = $_POST['ambiente_id'];
+    $hora_inicio = $_POST['hora_inicio'];
+    $hora_fim = $_POST['hora_fim'];
 
-// Recupera os dados do formulário
-$data = $_POST['data'];
-$tipo = $_POST['tipo'];
-$ambiente_id = $_POST['ambiente'];
+    $reservaExistente = R::findOne('reservas', 'data = ? AND ambiente_id = ? AND hora_inicio = ? AND hora_fim = ?', [$data, $ambiente_id, $hora_inicio, $hora_fim]);
 
-// Recupera o ID do usuário da sessão
-$usuario_id = $_SESSION['usuarios_id'];
+    if ($reservaExistente) {
+        echo '<p> "Já existe uma reserva agendada para este horário." </p>';
+        echo '<a href="calendario.php"> Voltar </a>';
+    }
 
-// Busca os dados do usuário no banco de dados
-$usuario = R::load('usuarios', $usuario_id);
+    // Recupera o ID do usuário da sessão
+    $usuario_id = $_SESSION['usuarios_id'];
 
-// Busca os dados do ambiente no banco de dados
-$ambiente = R::load('ambientes', $ambiente_id);
+    // Busca os dados do usuário no banco de dados
+    $usuario = R::load('usuarios', $usuario_id);
 
-// Insere os dados na tabela reservas
-$reserva = R::dispense('reservas');
-$reserva->data = $data;
-$reserva->tipo = $tipo;
-$reserva->ambiente_id = $ambiente_id;
-$reserva->nome_ambiente = $ambiente->nome;
-$reserva->imagem_ambiente = $ambiente->imagem;
-$reserva->nome = $usuario->nome; // Insere o nome do usuário
-$reserva->nome_usuario = $usuario->usuario;
+    // Busca os dados do ambiente no banco de dados
+    $ambiente = R::load('ambientes', $ambiente_id);
 
-$reserva->usuario = $usuario;
+    // Insere os dados na tabela reservas
+    $reserva = R::dispense('reservas');
+    $reserva->data = $data;
+    $reserva->tipo = $tipo;
+    $reserva->ambiente_id = $ambiente_id;
+    $reserva->nome_ambiente = $ambiente->nome;
+    $reserva->imagem_ambiente = $ambiente->imagem;
+    $reserva->nome = $usuario->nome; // Insere o nome do usuário
+    $reserva->nome_usuario = $usuario->usuario;
+    $reserva->hora_inicio = $hora_inicio;
+    $reserva->hora_fim = $hora_fim;
 
-R::store($reserva);
+    $reserva->usuario = $usuario;
 
-// ... (redirecionamento)
-header('../paginas/home.php');
-exit();
+    R::store($reserva);
+
+    // Redirecionamento (com mensagem de sucesso)
+    $_SESSION['reserva_sucesso'] = "Reserva realizada com sucesso!";
+    header("Location: ../paginas/calendario.php"); // Redireciona para a página home
+    exit();
 ?>

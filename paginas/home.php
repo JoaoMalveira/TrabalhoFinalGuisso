@@ -3,12 +3,6 @@ session_start();
 require_once '../class/rb.php'; // Inclui a configuração do banco de dados
 R::setup('mysql:host=127.0.0.1;dbname=reservas', 'root', ''); // Configuração do banco de dados
 
-// Verifica se o usuário está logado
-if (!isset($_SESSION['usuarios_id'])) {
-    // Redireciona para a página de login com uma mensagem de erro
-    header('Location: index.php?erro=' . urlencode("Você precisa fazer login para acessar o sistema."));
-    exit();
-}
 
 if (isset($_GET['erro'])) {
     $mensagem = urldecode($_GET['erro']);
@@ -19,9 +13,18 @@ $salas = R::find('ambientes', 'tipo = ?', ['Sala']);
 $laboratorios = R::find('ambientes', 'tipo = ?', ['Laboratório']);
 
 
-// Busca o nome do usuário no banco de dados
-$user = R::load('usuarios', $_SESSION['usuarios_id']);
-$usuario = $user->nome; // Ou $user->usuario, se preferir o nome de usuário
+
+
+if (isset($_SESSION['usuarios_id'])) {
+    $logado = true;
+
+    $user = R::load('usuarios', $_SESSION['usuarios_id']);
+    $usuario = $user->nome; // Ou $user->usuario, se preferir o nome de usuário
+} else {
+    $logado = false;
+}
+
+
 
 $admin = isset($_SESSION["admin"]) ? $_SESSION["admin"] : false; // Mantém a verificação de admin
 
@@ -43,14 +46,18 @@ $admin = isset($_SESSION["admin"]) ? $_SESSION["admin"] : false; // Mantém a ve
     <div>
 
         <div class="container-1">
-            <fieldset>
-                <h4>Bem vindo, <?php echo $usuario; ?>!</h4>
-            </fieldset>
-            <a href="calendario.php" class="apa">Página de Reservas</a>
-            <a href="listareserva.php" class="apa">Minhas Reservas</a>
-            <a href="controleusuario.php" class="apa">Controle de Usuários</a>
-            <a href="cadastroambiente.php" class="apa">Cadastro de Ambiente</a>
-            <a href="gerenciarreservas.php">Gerenciar Reservas</a>
+            <?php if ($logado): ?>
+                <fieldset>
+                    <p>Bem vindo, <?php echo $usuario; ?>!</p>
+                </fieldset>
+                <a href="Página de Reservas">Página de Reservas</a><br>
+                <a href="Minhas Reservas">Minhas Reservas</a><br>
+                <a href="Controle de Usuários">Controle de Usuários</a><br>
+                <a href="Cadastro de Ambiente">Cadastro de Ambiente</a><br>
+                <a href="Gerenciar Reservas">Gerenciar Reservas</a><br>
+            <?php else: ?>
+                Faça<a href="index.php"> Login </a>para entrar no sistema.
+            <?php endif; ?>
         </div>
     </div>
     </div>
@@ -64,19 +71,19 @@ $admin = isset($_SESSION["admin"]) ? $_SESSION["admin"] : false; // Mantém a ve
                 <p><?php echo $sala->descricao; ?></p>
             </div>
         <?php } ?>
-        </div>
-        <br>
-        <br>
-        <h3>Laboratórios</h3>
-        <div class="ambiente-container">
-            <?php foreach ($laboratorios as $laboratorio) { ?>
-                <div class="card">
-                    <img src="<?php echo '../bd/imgs/' . $laboratorio->imagem; ?>" alt="Imagem do laboratório">
-                    <h3><?php echo $laboratorio->nome; ?></h3>
-                    <p><?php echo $laboratorio->descricao; ?></p>
-                </div>
-            <?php } ?>
+    </div>
+    <br>
+    <br>
+    <h3>Laboratórios</h3>
+    <div class="ambiente-container">
+        <?php foreach ($laboratorios as $laboratorio) { ?>
+            <div class="card">
+                <img src="<?php echo '../bd/imgs/' . $laboratorio->imagem; ?>" alt="Imagem do laboratório">
+                <h3><?php echo $laboratorio->nome; ?></h3>
+                <p><?php echo $laboratorio->descricao; ?></p>
             </div>
+        <?php } ?>
+    </div>
 </body>
 <footer>
     <?php include "../inc/rodape.php"; ?>

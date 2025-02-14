@@ -1,6 +1,4 @@
-<?php
-include '../inc/validacao.php';
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

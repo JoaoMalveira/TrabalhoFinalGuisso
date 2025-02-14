@@ -4,10 +4,12 @@ require '../inc/validacao.php'; // Verifica se o usuário está autenticado
 require_once '../class/rb.php';
 R::setup('mysql:host=127.0.0.1;dbname=reservas', 'root', '');
 
+// Verifica se o nome de usuário já existe
+$usuario_existente = R::findOne('usuarios', 'usuario = ?', [$_POST['usuario']]);
 
 if ($usuario_existente) {
     $_SESSION['erro'] = "Este nome de usuário já está sendo utilizado.";
-    header("Location: cadastrousuario.php"); // Redireciona de volta ao formulário
+    header("Location: ../paginas/cadastrousuario.php"); // Redireciona de volta ao formulário
     exit;
 } else {
     $usuario = R::dispense("usuarios");
