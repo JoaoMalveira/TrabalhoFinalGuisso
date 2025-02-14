@@ -15,12 +15,16 @@ if (isset($_POST['tipo'], $_POST['nome'], $_POST['descricao'], $_FILES['imagem']
     R::setup('mysql:host=127.0.0.1;dbname=reservas', 'root', '');
 
     try {
+        // Verifica se já existe um ambiente com o mesmo nome
+        $ambienteExistente = R::findOne('ambientes', 'nome = ?', [$nome]);
+        if ($ambienteExistente) {
+            throw new Exception('Já existe um ambiente cadastrado com este nome.');
+        }
+
         // Verifica se o arquivo foi enviado corretamente
         if ($imagem['error'] !== UPLOAD_ERR_OK) {
             throw new Exception('Problema ao enviar o arquivo.');
         }
-
-        // Gera um nome único para o arquivo
         $nomeArquivo = uniqid('item_', true) . '.' . pathinfo($imagem['name'], PATHINFO_EXTENSION);
 
         // Define o diretório onde o arquivo será salvo
@@ -51,28 +55,19 @@ if (isset($_POST['tipo'], $_POST['nome'], $_POST['descricao'], $_FILES['imagem']
 
         // Fecha a conexão com o banco de dados
         R::close();
-
-        // Armazena uma mensagem de sucesso na sessão
-        $_SESSION['feedback'] = [
-            'mensagem' => 'Item cadastrado com sucesso!',
-            'status' => 'ok'
-        ];
+        $_SESSION['sucesso'] = "Ambiente cadastrado com sucesso!";
+        header("Location: ../paginas/cadastroambiente.php"); // Redireciona para a página home
+        exit();
     } catch (Exception $e) {
         // Armazena uma mensagem de erro na sessão
-        $_SESSION['feedback'] = [
-            'mensagem' => 'Erro ao cadastrar item: ' . $e->getMessage(),
-            'status' => 'erro'
-        ];
+        $_SESSION['erro'] = $e->getMessage(); // Exibe a mensagem de erro específica
+        header("Location: ../paginas/cadastroambiente.php"); // Redireciona para a página home
+        exit();
     }
 } else {
     // Armazena uma mensagem de erro se algum campo estiver faltando
-    $_SESSION['feedback'] = [
-        'mensagem' => 'Todos os campos são obrigatórios.',
-        'status' => 'erro'
-    ];
+    $_SESSION['erro'] = 'Todos os campos são obrigatórios.'; // Mensagem de erro mais concisa
+    header("Location: ../paginas/cadastroambiente.php"); // Redireciona para a página home
+    exit();
 }
-
-// Redireciona de volta para a página de cadastro
-header('Location: ../paginas/cadastroambiente.php');
-exit();
 ?>

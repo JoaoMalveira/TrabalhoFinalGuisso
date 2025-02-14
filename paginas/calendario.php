@@ -67,7 +67,15 @@ if (isset($_SESSION['erro_reserva'])): ?>
         <button type="submit">Continuar</button>
     </form>
 </div>
-
+<?php
+if (isset($_SESSION['erro'])) {
+    echo "<div class='alerta erro'>" . $_SESSION['erro'] . "</div>";
+    unset($_SESSION['erro']); // Apaga a mensagem após exibir
+} elseif (isset($_SESSION['sucesso'])) {
+    echo "<div class='alerta sucesso'>" . $_SESSION['sucesso'] . "</div>";
+    unset($_SESSION['sucesso']); // Apaga a mensagem após exibir
+}
+?>
 <script>
     // Bloquear datas anteriores à data atual
     document.addEventListener("DOMContentLoaded", function() {

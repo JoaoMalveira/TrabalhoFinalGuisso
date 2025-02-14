@@ -63,6 +63,36 @@ body {
 	margin: 0 auto;
 }
 
+.container-2 {
+	background: #ffffff;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+	width: 600px; /* Aumentei de 300px para 500px */
+	text-align: center;
+	margin: 0 auto;
+}
+
+.container-2 a {
+	display: block;
+	padding: 10px 0;
+	text-align: center;
+	text-decoration: none;
+	color: #333;
+	font-size: 16px;
+	font-weight: bold;
+	transition: 0.3s;
+}
+
+.container-2 a:hover {
+	color: #000;
+}
+
+.container-2 a:not(:last-child) {
+	border-bottom: 1px solid #ccc; /* Linha abaixo de cada link, exceto o último */
+}
+
+
 h2 {
 	margin-bottom: 20px;
 	color: #333;

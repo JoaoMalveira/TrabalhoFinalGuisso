@@ -50,11 +50,11 @@ $admin = isset($_SESSION["admin"]) ? $_SESSION["admin"] : false; // Mantém a ve
                 <fieldset>
                     <p>Bem vindo, <?php echo $usuario; ?>!</p>
                 </fieldset>
-                <a href="Página de Reservas">Página de Reservas</a><br>
-                <a href="Minhas Reservas">Minhas Reservas</a><br>
-                <a href="Controle de Usuários">Controle de Usuários</a><br>
-                <a href="Cadastro de Ambiente">Cadastro de Ambiente</a><br>
-                <a href="Gerenciar Reservas">Gerenciar Reservas</a><br>
+                <a href="calendario.php">Página de Reservas</a><br>
+                <a href="listareserva.php">Minhas Reservas</a><br>
+                <a href="controleusuario.php">Controle de Usuários</a><br>
+                <a href="cadastroambiente.php">Cadastro de Ambiente</a><br>
+                <a href="gerenciarreservas.php">Gerenciar Reservas</a><br>
             <?php else: ?>
                 Faça<a href="index.php"> Login </a>para entrar no sistema.
             <?php endif; ?>

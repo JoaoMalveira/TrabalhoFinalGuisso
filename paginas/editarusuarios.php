@@ -54,9 +54,9 @@ $usuarios = R::findAll('usuarios');
 		<?php include '../inc/cabecalho.php'; ?>
 	</header>
 		<main>
-		<b class="container-2">
-		<h3>Gerenciar Usuários</h3> <br>
+        <b></b><h3>Gerenciar Usuários</h3> <br>
         <a href="controleusuario.php" class="botao">🔙 Voltar</a>
+		
     <table border="1">
         <tr>
             <th>ID</th>
