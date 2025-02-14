@@ -37,7 +37,9 @@ require '../inc/validacao.php'; // Inclui a validação de login
 
             <button type="submit">Cadastrar</button>
         </form>
+        <p><a href="controleambiente.php" class="botao">🔙 Voltar</a></p>
     </div>
+
     <?php
     if (isset($_SESSION['erro'])) {
         echo "<div class='alerta erro'>" . $_SESSION['erro'] . "</div>";
@@ -48,6 +50,9 @@ require '../inc/validacao.php'; // Inclui a validação de login
     }
     ?>
 </body>
+<br>
+<br>
+<br>
 <footer>
     <?php
     include "../inc/rodape.php"

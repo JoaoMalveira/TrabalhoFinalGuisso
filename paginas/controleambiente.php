@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controle de Usuários</title>
+    <title>Controle de Ambientes</title>
     <link rel="stylesheet" href="../css/estilo.css"> <!-- Importando seu CSS global -->
 </head>
 
@@ -16,12 +16,11 @@
     </header>
 
     <div class="container">
-        <h2>Controle de Usuários</h2>
+        <h2>Controle de Ambientes</h2>
 
         <div>
-            <a href="listausuarios.php" class="botao">📋 Lista de Usuários</a><br>
-            <a href="editarusuarios.php" class="botao">✏️ Editar/Remover Usuários</a><br>
-            <a href="cadastrousuario.php" class="botao">➕ Cadastrar Usuário</a><br>
+            <a href="gerenciarambiente.php" class="botao">✏️ Remover Ambientes</a><br>
+            <a href="cadastroambiente.php" class="botao">➕ Cadastrar Ambientes</a><br>
         </div>
     </div> <br>
 

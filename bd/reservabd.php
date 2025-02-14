@@ -3,46 +3,76 @@ require '../inc/validacao.php';
 require '../class/rb.php';
 R::setup('mysql:host=127.0.0.1;dbname=reservas', 'root', '');
 
+// Recupera os dados do formulário
 $data = $_POST['data'];
 $tipo = $_POST['tipo'];
 $ambiente_id = $_POST['ambiente_id'];
 $hora_inicio = $_POST['hora_inicio'];
 $hora_fim = $_POST['hora_fim'];
 
-$reservaExistente = R::findOne('reservas', 'data = ? AND ambiente_id = ? AND hora_inicio = ? AND hora_fim = ?', [$data, $ambiente_id, $hora_inicio, $hora_fim]);
+// Inicia uma transação
+R::begin();
 
-if ($reservaExistente) {
-    $_SESSION['erro'] = "Já existe uma reserva agendada para este horário.";
+try {
+    // Verifica se há reservas conflitantes no mesmo ambiente e data
+    $reservasConflitantes = R::find('reservas', '
+        ambiente_id = ? AND data = ? AND (
+            (hora_inicio < ? AND hora_fim > ?) OR  -- Reserva que começa antes e termina durante
+            (hora_inicio < ? AND hora_fim > ?) OR  -- Reserva que começa durante e termina depois
+            (hora_inicio >= ? AND hora_fim <= ?)   -- Reserva que está completamente dentro do horário
+        )
+    ', [
+        $ambiente_id,
+        $data,
+        $hora_fim,
+        $hora_inicio,   // Verifica se há reservas que terminam durante o horário solicitado
+        $hora_inicio,
+        $hora_fim,   // Verifica se há reservas que começam durante o horário solicitado
+        $hora_inicio,
+        $hora_fim    // Verifica se há reservas completamente dentro do horário solicitado
+    ]);
+
+    // Se houver reservas conflitantes, lança uma exceção
+    if (!empty($reservasConflitantes)) {
+        throw new Exception("Já existe uma reserva agendada para este horário ou há sobreposição de horários.");
+    }
+
+    $usuario_id = $_SESSION['usuarios_id'];
+
+    $usuario = R::load('usuarios', $usuario_id);
+
+    // Busca os dados do ambiente no banco de dados
+    $ambiente = R::load('ambientes', $ambiente_id);
+
+    // Cria a nova reserva
+    $reserva = R::dispense('reservas');
+    $reserva->data = $data;
+    $reserva->tipo = $tipo;
+    $reserva->ambiente_id = $ambiente_id;
+    $reserva->nome_ambiente = $ambiente->nome;
+    $reserva->imagem_ambiente = $ambiente->imagem;
+    $reserva->hora_inicio = $hora_inicio;
+    $reserva->hora_fim = $hora_fim;
+    $reserva->nome = $usuario->nome;
+    $reserva->nome_usuario = $usuario->usuario;
+    $reserva->usuario = $usuario;
+
+    // Salva a reserva no banco de dados
+    R::store($reserva);
+
+    // Finaliza a transação
+    R::commit();
+
+    // Redireciona com mensagem de sucesso
+    $_SESSION['sucesso'] = "Reserva realizada com sucesso!";
     header("Location: ../paginas/calendario.php");
-    exit(); 
+    exit();
+} catch (Exception $e) {
+    // Desfaz a transação em caso de erro
+    R::rollback();
+
+    // Redireciona com mensagem de erro
+    $_SESSION['erro'] = $e->getMessage();
+    header("Location: ../paginas/calendario.php");
+    exit();
 }
-
-// Recupera o ID do usuário da sessão
-$usuario_id = $_SESSION['usuarios_id'];
-
-// Busca os dados do usuário no banco de dados
-$usuario = R::load('usuarios', $usuario_id);
-
-// Busca os dados do ambiente no banco de dados
-$ambiente = R::load('ambientes', $ambiente_id);
-
-// Insere os dados na tabela reservas
-$reserva = R::dispense('reservas');
-$reserva->data = $data;
-$reserva->tipo = $tipo;
-$reserva->ambiente_id = $ambiente_id;
-$reserva->nome_ambiente = $ambiente->nome;
-$reserva->imagem_ambiente = $ambiente->imagem;
-$reserva->nome = $usuario->nome; // Insere o nome do usuário
-$reserva->nome_usuario = $usuario->usuario;
-$reserva->hora_inicio = $hora_inicio;
-$reserva->hora_fim = $hora_fim;
-
-$reserva->usuario = $usuario;
-
-R::store($reserva);
-
-// Redirecionamento (com mensagem de sucesso)
-$_SESSION['sucesso'] = "Reserva realizada com sucesso!";
-header("Location: ../paginas/calendario.php"); // Redireciona para a página home
-exit();

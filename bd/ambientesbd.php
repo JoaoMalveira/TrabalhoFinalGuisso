@@ -1,6 +1,7 @@
 <?php
 // Inicia a sessão para armazenar mensagens de feedback
 session_start();
+require '../inc/validacao.php';
 
 // Verifica se todos os dados necessários foram enviados
 if (isset($_POST['tipo'], $_POST['nome'], $_POST['descricao'], $_FILES['imagem'])) {
@@ -70,4 +71,3 @@ if (isset($_POST['tipo'], $_POST['nome'], $_POST['descricao'], $_FILES['imagem']
     header("Location: ../paginas/cadastroambiente.php"); // Redireciona para a página home
     exit();
 }
-?>

@@ -25,9 +25,15 @@ if (isset($_SESSION['usuarios_id'])) {
 }
 
 
-
-$admin = isset($_SESSION["admin"]) ? $_SESSION["admin"] : false; // Mantém a verificação de admin
-
+if (isset($_SESSION['usuarios_id'])) {
+    $logado = true;
+    $user = R::load('usuarios', $_SESSION['usuarios_id']);
+    $usuario = $user->nome;
+    $admin = $user->admin == 1; // Define $admin aqui, após carregar os dados do usuário
+} else {
+    $logado = false;
+    $admin = false; // Define $admin como false para usuários não logados
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -50,11 +56,14 @@ $admin = isset($_SESSION["admin"]) ? $_SESSION["admin"] : false; // Mantém a ve
                 <fieldset>
                     <p>Bem vindo, <?php echo $usuario; ?>!</p>
                 </fieldset>
-                <a href="calendario.php">Página de Reservas</a><br>
-                <a href="listareserva.php">Minhas Reservas</a><br>
-                <a href="controleusuario.php">Controle de Usuários</a><br>
-                <a href="cadastroambiente.php">Cadastro de Ambiente</a><br>
-                <a href="gerenciarreservas.php">Gerenciar Reservas</a><br>
+                <a href="calendario.php">Faça sua reserva</a>
+                <a href="consulta.php">Consulta de datas e horários</a>
+                <a href="listareserva.php">Minhas Reservas</a>
+                <?php if ($admin): ?>
+                    <a href="controleusuario.php">Controle de Usuários</a>
+                    <a href="controleambiente.php">Controle de Ambientes</a>
+                    <a href="gerenciarreservas.php">Gerenciar Reservas</a>
+                <?php endif; ?>
             <?php else: ?>
                 Faça<a href="index.php"> Login </a>para entrar no sistema.
             <?php endif; ?>

@@ -1,4 +1,9 @@
 # TrabalhoFinalGuisso
 Trabalho realizado na matéria de Desenvolvimento Web
+João Eduardo Lopes Malveira, 2025.
 
-Primeiro teste, socorro.
+Créditos: Luiz Eduardo Santos Oliveira
+Heros Augusto Baia
+Lucas Virgilio Prates
+Francisco José Geraldo Matos de Souza
+chatgpt.com

@@ -22,4 +22,3 @@ if (R::count('usuarios') == 0) {
     echo "Já existem usuários cadastrados.";
     echo "<a href='../paginas/index.php'> Voltar</a>";
 }
-?>
