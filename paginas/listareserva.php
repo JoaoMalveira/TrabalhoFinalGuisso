@@ -74,6 +74,9 @@ $reservas = R::find('reservas', 'usuario_id = ?', [$_SESSION['usuarios_id']]);
 		<button onclick="window.location.href='home.php'">Voltar</button>
 	</div>
 </body>
+<br>
+
+<br>
 <footer>
 	<?php include "../inc/rodape.php"; ?>
 </footer>

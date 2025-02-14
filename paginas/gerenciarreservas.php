@@ -132,7 +132,8 @@ if (isset($_POST['excluir_reserva'])) {
 		</table>
 	</div>
 </body>
-
+<br>
+<br>
 <footer>
 	<?php include "../inc/rodape.php"; ?>
 </footer>
