@@ -13,10 +13,10 @@ include '../inc/cabecalho.php';
 ?>
 </header>
 <body>
-<div>
-	&copy; João Eduardo Lopes Malveira 2025; <br>
+<div class="container-1">
+	<p>&copy; João Eduardo Lopes Malveira 2025; </p><br>
 	<br>
-					malveirajoao@gmail.com
+				<p>malveirajoao@gmail.com</p>	
 </div>
 </body>
 <footer>
