@@ -27,6 +27,12 @@
             <button type="submit" name="login">Entrar</button>
         </form>
     </div>
+    <?php 
+        if (isset($_SESSION['negado'])) {
+            echo "<div class='alerta erro'>" . $_SESSION['negado'] . "</div>";
+            unset($_SESSION['negado']); // Apaga a mensagem após exibir
+        }
+        ?>
 </body>
 <footer>
     <?php

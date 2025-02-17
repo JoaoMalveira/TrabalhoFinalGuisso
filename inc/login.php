@@ -17,9 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     } else {
         // Login falhou
-        $mensagem = "Usuário ou senha incorretos."; // Mensagem de erro
+        $_SESSION['negado'] = 'Acesso negado. Verifique suas credenciais';
         // Redireciona de volta para index.php com a mensagem de erro
-        header('Location: ../paginas/index.php?erro=' . urlencode($mensagem)); 
+        header('Location: ../paginas/index.php'); 
         exit();
     }
 }

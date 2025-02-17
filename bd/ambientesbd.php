@@ -12,10 +12,6 @@ if (isset($_POST['tipo'], $_POST['nome'], $_POST['descricao'], $_FILES['imagem']
     $descricao = $_POST['descricao'];
     $imagem = $_FILES['imagem'];
 
-    // Inclui a biblioteca de banco de dados
-    require_once '../class/rb.php';
-    R::setup('mysql:host=127.0.0.1;dbname=reservas', 'root', '');
-
     try {
         // Verifica se já existe um ambiente com o mesmo nome
         $ambienteExistente = R::findOne('ambientes', 'nome = ?', [$nome]);

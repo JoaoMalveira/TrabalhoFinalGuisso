@@ -15,7 +15,7 @@ R::setup('mysql:host=127.0.0.1;dbname=reservas', 'root', '');
 $user = R::load('usuarios', $_SESSION['usuarios_id']);
 
 // Verifica se o usuário é administrador
-if ($user->admin != 1) { // Assumindo que 'admin' seja 1 para administradores
+if ($user->admin != 1) { // 1 para administradores
     // Redireciona para a página home se o usuário não for administrador
 		$_SESSION['negado'] = 'Acesso negado. Você não tem permissão';
     header("Location: ../paginas/home.php");

@@ -5,8 +5,8 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Verifica se o usuário está logado
 if (!isset($_SESSION['usuarios_id'])) {
-  // Redireciona para a página de login com uma mensagem de erro
-  header('Location: ../paginas/index.php?erro=' . urlencode("Você precisa fazer login para acessar o sistema."));
+  // Redireciona para a página de login 
+  header('Location: ../paginas/index.php?erro=');
   exit();
 }
 ?>
