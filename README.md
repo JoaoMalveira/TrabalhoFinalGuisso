@@ -6,4 +6,3 @@ Créditos: Luiz Eduardo Santos Oliveira
 Heros Augusto Baia
 Lucas Virgilio Prates
 Francisco José Geraldo Matos de Souza
-chatgpt.com
