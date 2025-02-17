@@ -13,6 +13,21 @@ if (empty($reservas)) {
     $reservas = [];
 }
 
+if (isset($_POST['excluir_reserva'])) {
+	$id_reserva_excluir = $_POST['id_reserva'];
+	$reserva_excluir = R::load('reservas', $id_reserva_excluir);
+
+	if ($reserva_excluir) {
+		R::trash($reserva_excluir);
+		$_SESSION['sucesso'] = "Reserva excluída com sucesso!";
+	} else {
+		$_SESSION['erro'] = "Erro ao excluir reserva.";
+	}
+
+	header("Location: listareserva.php"); // Recarrega a página para atualizar a lista
+	exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +55,17 @@ if (empty($reservas)) {
             max-width: 100px;
             height: auto;
         }
+        .excluir-btn {
+			background-color: #f44336;
+			color: white;
+			padding: 6px 10px;
+			border: none;
+			cursor: pointer;
+		}
+
+		.excluir-btn:hover {
+			background-color: #d32f2f;
+		}
     </style>
 </head>
 <header>
@@ -61,6 +87,7 @@ if (empty($reservas)) {
                         <th>Ambiente</th>
                         <th>Hora de Início</th>
                         <th>Hora de Término</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -76,10 +103,11 @@ if (empty($reservas)) {
                             <td><?php echo $reserva->hora_inicio; ?></td>
                             <td><?php echo $reserva->hora_fim; ?></td>
                             <td>
-                                <form method="post" style="display: inline;">
-                                    <input type="hidden" name="id_reserva" value="<?php echo $reserva->id; ?>">
-                                </form>
-                            </td>
+							<form method="post" style="display: inline;">
+								<input type="hidden" name="id_reserva" value="<?php echo $reserva->id; ?>">
+								<button type="submit" name="excluir_reserva" class="excluir-btn">Excluir</button>
+							</form>
+						</td>
                         </tr>
                     <?php 
                         endif; // Fim do if ($usuario)
@@ -88,6 +116,15 @@ if (empty($reservas)) {
             </table>
         <?php endif; ?>
     </div>
+    <?php
+		if (isset($_SESSION['erro'])) {
+			echo "<div class='alerta erro'>" . $_SESSION['erro'] . "</div>";
+			unset($_SESSION['erro']);
+		} elseif (isset($_SESSION['sucesso'])) {
+			echo "<div class='alerta sucesso'>" . $_SESSION['sucesso'] . "</div>";
+			unset($_SESSION['sucesso']);
+		}
+		?>
 </body>
 <br>
 

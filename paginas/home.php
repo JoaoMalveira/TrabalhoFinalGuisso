@@ -65,7 +65,10 @@ if (isset($_SESSION['usuarios_id'])) {
                     <a href="gerenciarreservas.php">Gerenciar Reservas</a>
                 <?php endif; ?>
             <?php else: ?>
-               <p><a href="index.php">Faça login para entrar no sistema</a></p>
+                <fieldset>
+                    <a href="index.php">Faça login para entrar no sistema</a>
+                </fieldset>
+                <a href="consulta.php">Consulta de datas e horários</a>
             <?php endif; ?>
         </div>
     </div>
@@ -98,7 +101,7 @@ if (isset($_SESSION['usuarios_id'])) {
         </div>
         <br>
         <br>
-        <?php 
+        <?php
         if (isset($_SESSION['negado'])) {
             echo "<div class='alerta erro'>" . $_SESSION['negado'] . "</div>";
             unset($_SESSION['negado']); // Apaga a mensagem após exibir

@@ -12,18 +12,23 @@ function nomeUsuarioExiste($nome_usuario, $id = null)
 // Atualizar usuário
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['editar'])) {
     $id = $_POST['id'];
-    $usuario = $_POST['usuario'];
+    $novo_usuario = $_POST['nome_usuario']; // Obtém o novo nome de usuário do formulário
+    $nome_completo = $_POST['nome_completo']; // Obtém o novo nome completo do formulário
+    $admin = isset($_POST['admin']) ? 1 : 0; // Obtém o valor do checkbox admin
 
     // Verifica se o nome de usuário já existe (e se não for o mesmo usuário que está sendo editado)
-    if (nomeUsuarioExiste($usuario, $id)) {
+    if (nomeUsuarioExiste($novo_usuario, $id)) {
         echo "<script>alert('O nome de usuário já está em uso.');</script>";
     } else {
         $usuario = R::load('usuarios', $id);
         if ($usuario->id) {
-            $usuario->usuario = $usuario;
-            $usuario->nome_completo = $_POST['nome'];
-            $usuario->admin = isset($_POST['admin']) ? 1 : 0;
+            $usuario->usuario = $novo_usuario; // Atribui o NOVO valor do usuário
+            $usuario->nome = $nome_completo;   // Atribui o NOVO valor do nome completo
+            $usuario->admin = $admin;         // Atribui o NOVO valor de admin
             R::store($usuario);
+            echo "<script>alert('Usuário atualizado com sucesso!');</script>"; // Feedback ao usuário
+        } else {
+            echo "<script>alert('Usuário não encontrado.');</script>"; // Mensagem de erro se o usuário não for encontrado
         }
     }
 }
