@@ -3,7 +3,7 @@ require '../inc/validacao.php'; // Inclui a validação de login
 require_once '../class/rb.php';
 R::setup('mysql:host=127.0.0.1;dbname=reservas', 'root', '');
 
-$usuario_id = $_SESSION['usuario_id'];
+$usuario_id = $_SESSION['usuarios_id'];
 
 // Busca as reservas do usuário logado.  Usando findAll para garantir um array
 $reservas = R::findAll('reservas', 'usuario_id = ?', [$usuario_id]);
